@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import {FlatList, Image, Platform, StyleSheet, Text, View} from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
 const ImageSlider = ({titile, data, ReachedEnd, circular}) => {
@@ -95,8 +95,8 @@ const ImageSlider = ({titile, data, ReachedEnd, circular}) => {
                   <Text
                     style={{
                       position: 'absolute',
-                      left: 20,
-                      bottom: 10,
+                      left: 15,
+                      bottom: Platform.OS==="ios"?5: 22,
                       color: '#fff',
                       fontSize: 16,
                       fontWeight: 'bold',
