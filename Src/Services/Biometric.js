@@ -1,18 +1,25 @@
-import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
+import ReactNativeBiometrics from 'react-native-biometrics';
 
-const rnBiometrics = new ReactNativeBiometrics()
+const rnBiometrics = new ReactNativeBiometrics();
 
-rnBiometrics.isSensorAvailable()
-  .then((resultObject) => {
-    const { available, biometryType } = resultObject
+export const checkBiometricsAvailability = async () => {
+  try {
+    const resultObject = await rnBiometrics.isSensorAvailable();
+    const {available, biometryType} = resultObject;
+    return {available, biometryType};
+  } catch (error) {
+    console.log('Error checking biometrics availability:', error);
+  }
+};
 
-    if (available && biometryType === BiometryTypes.TouchID) {
-      console.log('TouchID is supported')
-    } else if (available && biometryType === BiometryTypes.FaceID) {
-      console.log('FaceID is supported')
-    } else if (available && biometryType === BiometryTypes.Biometrics) {
-      console.log('Biometrics is supported')
-    } else {
-      console.log('Biometrics not supported')
-    }
-  })
+export const authenticateWithBiometrics = async () => {
+  try {
+    const resultObject = await rnBiometrics.simplePrompt({
+      promptMessage: 'Confirm fingerprint',
+    });
+    const {success} = resultObject;
+    return success;
+  } catch (error) {
+    console.log('Biometrics authentication failed:', error);
+  }
+};
