@@ -4,7 +4,6 @@ import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
 const ImageSlider = ({titile, data, ReachedEnd, circular}) => {
   const [loading, setLoading] = useState(Array(data.length).fill(true));
-  console.log(loading);
 
   const handleImageLoad = index => {
     const updatedLoading = [...loading];

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FlatList,
   Text,
@@ -11,7 +11,7 @@ import {
   ImageBackground,
   Platform,
 } from 'react-native';
-import {GetImages} from '../Api/Api';
+import { GetImages } from '../Api/Api';
 import ImageAction from '../Components/ImageAction';
 
 const HEIGHT = Dimensions.get('window').height;
@@ -40,12 +40,12 @@ const Home = () => {
       });
   };
 
-  const renderItem = ({item, index}) => {
+  const renderItem = ({ item, index }) => {
     return (
       <View style={styles.imageContainer}>
         <ImageBackground
           style={styles.imageStyle}
-          source={{uri: item.download_url}}
+          source={{ uri: item.download_url }}
           resizeMode="cover"></ImageBackground>
         <View style={styles.textOverlay}>
           <Text style={styles.textStyle}>Caption</Text>
@@ -82,7 +82,7 @@ const Home = () => {
         initialNumToRender={data.length > 1000 ? data.length : 1000}
         maxToRenderPerBatch={data.length > 1000 ? data.length : 1000}
         windowSize={1}
-        contentContainerStyle={{minHeight: HEIGHT}}
+        contentContainerStyle={{ minHeight: HEIGHT }}
       />
     </SafeAreaView>
   );
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   textOverlay: {
     position: 'absolute',
-    bottom: Platform.OS === 'ios' ? 170 : 100,
+    bottom: Platform.OS === 'ios' ? "20%" : 100,
     left: 10,
   },
   textStyle: {
